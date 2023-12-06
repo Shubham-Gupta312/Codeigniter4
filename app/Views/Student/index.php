@@ -21,7 +21,7 @@
     }
     ?>
 
-    <table class="table table-hover mt-2">
+    <table class="table table-hover mt-2" id="mydatatable">
         <thead>
             <tr>
                 <th scope="col">S.no</th>
