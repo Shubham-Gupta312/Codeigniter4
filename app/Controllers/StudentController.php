@@ -26,7 +26,34 @@ class StudentController extends BaseController
             'course' => $this->request->getPost('course'),
         ];
         $students->save($data);
-        return redirect('students');
+        return redirect('students')->with('status', 'Data Added Successfully!');
+    }
+
+    public function update($id = null)
+    {
+       $student = new StudentModel();
+       $data['students'] = $student->find($id);
+       return view('Student/update', $data);
+    }
+
+    public function edit($id = null)
+    {
+        $student = new StudentModel();
+        $data = [
+            'name' => $this->request->getPost('name'),
+            'email' => $this->request->getPost('email'),
+            'phone' => $this->request->getPost('contact'),
+            'course' => $this->request->getPost('course'),
+        ];
+        $student->update($id, $data);
+        return redirect('students')->to(base_url('students'))->with('status', 'Data Updated Successfully!');
+    }
+
+    public function delete($id = null)
+    {
+        $student = new StudentModel();
+        $student->delete($id);
+        return redirect('students')->back()->with('status', 'Data Deleted Successfully!');
     }
 
 }
